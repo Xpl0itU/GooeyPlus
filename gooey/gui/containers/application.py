@@ -77,7 +77,7 @@ class GooeyApplication(wx.Frame):
 
     def applyConfiguration(self):
         self.SetTitle(self.buildSpec['program_name'])
-        self.SetBackgroundColour(self.buildSpec.get('body_bg_color'))
+        self.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOWFRAME))
 
     def onStart(self, *args, **kwarg):
         """

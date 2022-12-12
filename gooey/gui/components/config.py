@@ -90,6 +90,7 @@ class ConfigPage(ScrolledPanel):
 
 
     def layoutComponent(self):
+        self.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_BACKGROUND))
         sizer = wx.BoxSizer(wx.VERTICAL)
         for item in self.rawWidgets['contents']:
             self.makeGroup(self, sizer, item, 0, wx.EXPAND | wx.ALL, 10)
@@ -115,14 +116,14 @@ class ConfigPage(ScrolledPanel):
             boxSizer.AddSpacer(10)
             if group['name']:
                 groupName = wx_util.h1(parent, self.getName(group) or '')
-                groupName.SetForegroundColour(getin(group, ['options', 'label_color']))
+                groupName.SetForegroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOWTEXT))
                 groupName.Bind(wx.EVT_LEFT_DOWN, notifyMouseEvent)
                 boxSizer.Add(groupName, 0, wx.TOP | wx.BOTTOM | wx.LEFT, 8)
 
         group_description = getin(group, ['description'])
         if group_description:
             description = AutoWrappedStaticText(parent, label=group_description, target=boxSizer)
-            description.SetForegroundColour(getin(group, ['options', 'description_color']))
+            description.SetForegroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_CAPTIONTEXT))
             description.SetMinSize((0, -1))
             description.Bind(wx.EVT_LEFT_DOWN, notifyMouseEvent)
             boxSizer.Add(description, 1,  wx.EXPAND | wx.LEFT | wx.RIGHT | wx.BOTTOM, 10)

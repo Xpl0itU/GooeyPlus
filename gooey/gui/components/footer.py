@@ -105,8 +105,10 @@ class Footer(wx.Panel):
         self.progress_bar = wx.Gauge(self, range=100)
 
         self.progress_text = wx.StaticText(self)
+        self.progress_text.SetForegroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOWTEXT))
 
         self.time_remaining_text = wx.StaticText(self)
+        self.time_remaining_text.SetForegroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOWTEXT))
 
         self.buttons = [self.cancel_button, self.start_button,
                         self.stop_button, self.close_button,
@@ -117,7 +119,7 @@ class Footer(wx.Panel):
 
 
     def _do_layout(self):
-        self.SetBackgroundColour(self.buildSpec['footer_bg_color'])
+        self.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_BACKGROUND))
         self.stop_button.Hide()
         self.restart_button.Hide()
 

@@ -32,7 +32,8 @@ class Console(wx.Panel):
             False,
             self.getFontFace(),
         ))
-        self.textbox.SetForegroundColour(self.buildSpec['terminal_font_color'])
+        self.textbox.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_BACKGROUND))
+        self.textbox.SetForegroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOWTEXT))
          
         self.layoutComponent()
         self.Layout()
@@ -91,7 +92,7 @@ class Console(wx.Panel):
         return self.textbox.GetValue()
 
     def layoutComponent(self):
-        self.SetBackgroundColour(self.buildSpec.get('terminal_panel_color', '#F0F0F0'))
+        self.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_BACKGROUND))
         sizer = wx.BoxSizer(wx.VERTICAL)
         sizer.AddSpacer(10)
         sizer.Add(self.text, 0, wx.LEFT, 20)

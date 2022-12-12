@@ -12,6 +12,8 @@ from gooey.gui.three_to_four import bitmapFromImage
 from gooey.util.functional import getin
 from gooey.gui.components.mouse import notifyMouseEvent
 
+import wx
+
 PAD_SIZE = 10
 
 
@@ -49,12 +51,14 @@ class FrameHeader(wx.Panel):
         self.Layout()
 
     def layoutComponent(self):
-        self.SetBackgroundColour(self.buildSpec['header_bg_color'])
+        self.SetBackgroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_BACKGROUND))
         self.SetSize((30, self.buildSpec['header_height']))
         self.SetMinSize((120, self.buildSpec['header_height']))
 
         self._header = wx_util.h1(self, label=self.buildSpec['program_name'])
+        self._header.SetForegroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_WINDOWTEXT))
         self._subheader = wx.StaticText(self, label=self.buildSpec['program_description'])
+        self._subheader.SetForegroundColour(wx.SystemSettings.GetColour(wx.SYS_COLOUR_CAPTIONTEXT))
 
         images = self.buildSpec['images']
         targetHeight = self.buildSpec['header_height'] - 10
