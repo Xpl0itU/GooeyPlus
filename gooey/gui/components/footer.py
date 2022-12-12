@@ -26,6 +26,7 @@ class Footer(wx.Panel):
         self.cancel_button = None
         self.start_button = None
         self.progress_bar = None
+        self.progress_text = None
         self.close_button = None
         self.stop_button = None
         self.restart_button = None
@@ -64,6 +65,7 @@ class Footer(wx.Panel):
         '''
         value = kwargs.get('progress')
         pb = self.progress_bar
+        pt = self.progress_text
         if value is None:
             return
         if value < 0:
@@ -81,6 +83,7 @@ class Footer(wx.Panel):
                     else:
                         pb.SetValue(value + 1)
                 pb.SetValue(value)
+                pt.SetLabel(f"{value}%")
 
 
     def showButtons(self, *buttonsToShow):
@@ -101,6 +104,8 @@ class Footer(wx.Panel):
 
         self.progress_bar = wx.Gauge(self, range=100)
 
+        self.progress_text = wx.StaticText(self)
+
         self.time_remaining_text = wx.StaticText(self)
 
         self.buttons = [self.cancel_button, self.start_button,
@@ -119,10 +124,12 @@ class Footer(wx.Panel):
         v_sizer = wx.BoxSizer(wx.VERTICAL)
         h_sizer = wx.BoxSizer(wx.HORIZONTAL)
 
-        h_sizer.Add(self.progress_bar, 1,
+        h_sizer.Add(self.progress_bar, 2,
                     wx.ALIGN_LEFT | wx.ALIGN_CENTER_VERTICAL | wx.LEFT, 20)
+
+        h_sizer.Add(self.progress_text, 1,wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 20)
         
-        h_sizer.Add(self.time_remaining_text,0,wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 20)
+        h_sizer.Add(self.time_remaining_text, 0,wx.LEFT | wx.ALIGN_CENTER_VERTICAL, 20)
 
         h_sizer.AddStretchSpacer(1)
         h_sizer.Add(self.cancel_button, 0,wx.RIGHT, 20)
@@ -147,9 +154,9 @@ class Footer(wx.Panel):
         return wx.Button(
             parent=self,
             id=event_id,
-            size=(90, -1),
+            size=(90, 23),
             label=label,
-            style=style)
+            style=wx.BU_EXACTFIT)
 
     def dispatch_click(self, event):
         pub.send_message(event.GetId())
