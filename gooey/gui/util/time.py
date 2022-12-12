@@ -35,7 +35,7 @@ class Timing(object):
     def start(self):
         self.startTime = get_current_time()
         self.estimatedRemaining = None
-        self.wxTimer.Start()
+        self.wxTimer.Start(milliseconds=1)
 
     def stop(self):
         self.wxTimer.Stop()
@@ -78,7 +78,10 @@ def get_elapsed_time(startTime):
 def estimate_time_remaining(progress,startTime):
     # https://github.com/tqdm/tqdm/blob/0cd9448b2bc08125e74538a2aea6af42ee1a7b6f/tqdm/std.py#L392
     # https://github.com/tqdm/tqdm/blob/0cd9448b2bc08125e74538a2aea6af42ee1a7b6f/tqdm/std.py#L417
-    _rate = progress / get_elapsed_time(startTime)
+    elapsed_time = get_elapsed_time(startTime)
+    if elapsed_time == 0:
+        elapsed_time = 1
+    _rate = progress / elapsed_time
     return ((100 - progress) / _rate)
 
 def get_current_time():
