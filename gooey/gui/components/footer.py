@@ -148,6 +148,7 @@ class Footer(wx.Panel):
         self.restart_button.Hide()
         self.close_button.Hide()
         self.progress_bar.Hide()
+        self.progress_text.Hide()
 
         v_sizer.AddStretchSpacer(1)
         self.SetSizer(v_sizer)
