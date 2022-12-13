@@ -14,13 +14,12 @@ class Dropdown(TextContainer):
         'enable_autocomplete': bool
     }
     def getWidget(self, parent, *args, **options):
-        default = _('select_option')
         return wx.ComboBox(
             parent=parent,
             id=-1,
             # str conversion allows using stringyfiable values in addition to pure strings
-            value=str(default),
-            choices=[str(default)] + [str(choice) for choice in self._meta['choices']],
+            value=self._meta['choices'][0],
+            choices=[str(choice) for choice in self._meta['choices']],
             style=wx.CB_DROPDOWN)
 
     def setOptions(self, options):
