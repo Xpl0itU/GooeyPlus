@@ -29,7 +29,7 @@ class CheckBox(TextContainer):
         layout.AddSpacer(2)
         if self.help_text:
             hsizer = wx.BoxSizer(wx.HORIZONTAL)
-            hsizer.Add(self.widget, 0)
+            hsizer.Add(self.widget, 0, wx.EXPAND | wx.RIGHT, 5)
             hsizer.Add(self.help_text, 1)
             layout.Add(hsizer, 1, wx.EXPAND)
             layout.AddSpacer(2)
