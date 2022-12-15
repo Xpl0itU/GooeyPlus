@@ -29,7 +29,7 @@ class Dropdown(TextContainer):
 
     def setValue(self, value):
         ## +1 to offset the default placeholder value
-        index = self._meta['choices'].index(value) + 1
+        index = self._meta['choices'].index(value)
         self.widget.SetSelection(index)
 
     def getWidgetValue(self):
