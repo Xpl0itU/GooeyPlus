@@ -250,6 +250,7 @@ class GooeyApplication(wx.Frame):
         self.header.setTitle(_("settings_title"))
         self.header.setSubtitle(self.buildSpec['program_description'])
         self.footer.showButtons('cancel_button', 'start_button')
+        self.footer.progress_text.Show(False)
         self.footer.progress_bar.Show(False)
         self.footer.time_remaining_text.Show(False)
 
@@ -261,6 +262,7 @@ class GooeyApplication(wx.Frame):
         self.header.setTitle(_("running_title"))
         self.header.setSubtitle(_('running_msg'))
         self.footer.showButtons('stop_button')
+        self.footer.progress_text.Show(True)
         self.footer.progress_bar.Show(True)
         self.footer.time_remaining_text.Show(False)
         if self.buildSpec.get('timing_options')['show_time_remaining']:
@@ -277,6 +279,7 @@ class GooeyApplication(wx.Frame):
                    if self.buildSpec.get('show_restart_button', True)
                    else ['edit_button', 'close_button'])
         self.footer.showButtons(*buttons)
+        self.footer.progress_text.Show(False)
         self.footer.progress_bar.Show(False)
         if self.buildSpec.get('timing_options')['show_time_remaining']:
             self.timer.stop()
